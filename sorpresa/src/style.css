@@ -1,0 +1,40 @@
+/* Background con pseudo-elemento para aplicar blur sin desenfocar el contenido */
+body {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* fallback en caso de que el pseudo-elemento no cargue */
+    background-color: #000;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Pseudo-elemento con la imagen de fondo desenfocada ligeramente */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    background-image: url('fondo.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(2px);      /* ajusta este valor para más/menos blur */
+    transform: scale(1.02); /* evita bordes visibles al aplicar blur */
+    z-index: -1;            /* detrás del contenido */
+    pointer-events: none;   /* que no interfiera con clicks */
+}
+
+/* Fondo del formulario con transparencia para mejorar legibilidad sobre la imagen */
+#decisionForm{
+    background-color: rgba(59,57,57,0.85);
+    color: #fff;
+}
+
+/* Estilo para el título: contorno visible sobre fondos complejos */
+.title {
+    color: #ff4d4d; /* color principal del texto */
+    text-align: center;
+    font-weight: bold;
+    -webkit-text-stroke: 0.05rem #848484; /* contorno negro (funciona en chrome/safari) */
+    display: inline-block;
+    justify-content: center;
+}
